@@ -10,8 +10,6 @@ local Ragebot1 = Instance.new("ImageLabel")
 local MainText = Instance.new("TextLabel")
 local RagebotLine = Instance.new("Frame")
 local EnableRagebot = Instance.new("TextLabel")
-local Rage1toggle = Instance.new("ImageLabel")
-local ToggleEnabled = Instance.new("ImageLabel")
 local EnableSilentAim = Instance.new("TextLabel")
 local Rage2toggle = Instance.new("ImageLabel")
 local SilentToggleEnabled = Instance.new("ImageLabel")
@@ -23,6 +21,8 @@ local Fovdisplaynumbers = Instance.new("TextLabel")
 local OverrideResolver = Instance.new("TextLabel")
 local OverrideResolverToggle = Instance.new("ImageLabel")
 local SilentToggleEnabled_3 = Instance.new("ImageLabel")
+local RagebotToggle = Instance.new("ImageLabel")
+local Toggle = Instance.new("ImageButton")
 local Sidebar = Instance.new("Frame")
 local LogoText2 = Instance.new("TextLabel")
 local LogoText3 = Instance.new("TextLabel")
@@ -50,8 +50,6 @@ Menu.BackgroundTransparency = 1.000
 Menu.BorderSizePixel = 0
 Menu.Position = UDim2.new(0.180938199, 0, 0.0639810413, 0)
 Menu.Size = UDim2.new(0, 864, 0, 685)
-Menu.Active = true
-Menu.Draggable = true
 
 Main.Name = "Main"
 Main.Parent = Menu
@@ -59,7 +57,6 @@ Main.BackgroundColor3 = Color3.fromRGB(8, 8, 8)
 Main.BorderSizePixel = 0
 Main.Position = UDim2.new(0.252157927, 0, -0.00171238929, 0)
 Main.Size = UDim2.new(0, 644, 0, 685)
-Main.Active = true
 
 Ragebot1.Name = "Ragebot1"
 Ragebot1.Parent = Main
@@ -103,33 +100,6 @@ EnableRagebot.Text = "Enable Ragebot"
 EnableRagebot.TextColor3 = Color3.fromRGB(255, 255, 255)
 EnableRagebot.TextSize = 14.000
 EnableRagebot.TextXAlignment = Enum.TextXAlignment.Left
-
-Rage1toggle.Name = "Rage1toggle"
-Rage1toggle.Parent = Ragebot1
-Rage1toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Rage1toggle.BackgroundTransparency = 1.000
-Rage1toggle.Position = UDim2.new(0.867435157, 0, 0.28773585, 0)
-Rage1toggle.Size = UDim2.new(0, 30, 0, 15)
-Rage1toggle.Image = "rbxassetid://3570695787"
-Rage1toggle.ImageColor3 = Color3.fromRGB(3, 23, 46)
-Rage1toggle.ScaleType = Enum.ScaleType.Slice
-Rage1toggle.SliceCenter = Rect.new(100, 100, 100, 100)
-Rage1toggle.SliceScale = 0.120
-
-ToggleEnabled.Name = "ToggleEnabled"
-ToggleEnabled.Parent = Rage1toggle
-ToggleEnabled.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ToggleEnabled.BackgroundTransparency = 1.000
-ToggleEnabled.Position = UDim2.new(0.54285717, 0, 0, 0)
-ToggleEnabled.Size = UDim2.new(0, 16, 0, 15)
-ToggleEnabled.Image = "rbxassetid://3570695787"
-ToggleEnabled.ImageColor3 = Color3.fromRGB(3, 168, 245)
-ToggleEnabled.ScaleType = Enum.ScaleType.Slice
-ToggleEnabled.SliceCenter = Rect.new(100, 100, 100, 100)
-ToggleEnabled.SliceScale = 0.120
-ToggleEnabled.MouseButton1Down:Connect(function()
-
-end)
 
 EnableSilentAim.Name = "EnableSilentAim"
 EnableSilentAim.Parent = Ragebot1
@@ -257,6 +227,27 @@ SilentToggleEnabled_3.ScaleType = Enum.ScaleType.Slice
 SilentToggleEnabled_3.SliceCenter = Rect.new(100, 100, 100, 100)
 SilentToggleEnabled_3.SliceScale = 0.120
 
+RagebotToggle.Name = "RagebotToggle"
+RagebotToggle.Parent = Ragebot1
+RagebotToggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+RagebotToggle.BackgroundTransparency = 1.000
+RagebotToggle.Position = UDim2.new(0.866999984, 0, 0.228, 0)
+RagebotToggle.Size = UDim2.new(0, 30, 0, 15)
+RagebotToggle.Image = "rbxassetid://3570695787"
+RagebotToggle.ImageColor3 = Color3.fromRGB(3, 23, 46)
+RagebotToggle.ScaleType = Enum.ScaleType.Slice
+RagebotToggle.SliceCenter = Rect.new(100, 100, 100, 100)
+RagebotToggle.SliceScale = 0.120
+
+Toggle.Name = "Toggle"
+Toggle.Parent = RagebotToggle
+Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Toggle.BackgroundTransparency = 1.000
+Toggle.Position = UDim2.new(0.533333302, 0, 0, 0)
+Toggle.Size = UDim2.new(0, 16, 0, 15)
+Toggle.Image = "rbxassetid://3570695787"
+Toggle.ImageColor3 = Color3.fromRGB(3, 168, 245)
+
 Sidebar.Name = "Sidebar"
 Sidebar.Parent = Menu
 Sidebar.BackgroundColor3 = Color3.fromRGB(22, 23, 22)
@@ -264,7 +255,6 @@ Sidebar.BackgroundTransparency = 0.100
 Sidebar.BorderSizePixel = 0
 Sidebar.Position = UDim2.new(-0.00193216698, 0, -0.00171239139, 0)
 Sidebar.Size = UDim2.new(0, 220, 0, 685)
-Sidebar.Active = true
 
 LogoText2.Name = "LogoText2"
 LogoText2.Parent = Sidebar
@@ -421,15 +411,14 @@ mouse.ImageColor3 = Color3.fromRGB(14, 149, 212)
 mouse.ImageRectOffset = Vector2.new(204, 964)
 mouse.ImageRectSize = Vector2.new(36, 36)
 
-
 function PopupGui()
-if Menu.Visible == true then Menu.Visible = false
-else Menu.Visible = true
-end
+	if Menu.Visible == true then Menu.Visible = false
+	else Menu.Visible = true
+	end
 end
 
 game:GetService("UserInputService").InputBegan:Connect(function(key)
- if key.KeyCode == Enum.KeyCode.Insert then
-PopupGui()
-end
+	if key.KeyCode == Enum.KeyCode.Insert then
+		PopupGui()
+	end
 end)
