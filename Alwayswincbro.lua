@@ -59,6 +59,7 @@ Main.BackgroundColor3 = Color3.fromRGB(8, 8, 8)
 Main.BorderSizePixel = 0
 Main.Position = UDim2.new(0.252157927, 0, -0.00171238929, 0)
 Main.Size = UDim2.new(0, 644, 0, 685)
+Main.Active = true
 
 Ragebot1.Name = "Ragebot1"
 Ragebot1.Parent = Main
@@ -263,6 +264,7 @@ Sidebar.BackgroundTransparency = 0.100
 Sidebar.BorderSizePixel = 0
 Sidebar.Position = UDim2.new(-0.00193216698, 0, -0.00171239139, 0)
 Sidebar.Size = UDim2.new(0, 220, 0, 685)
+Sidebar.Active = true
 
 LogoText2.Name = "LogoText2"
 LogoText2.Parent = Sidebar
