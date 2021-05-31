@@ -50,6 +50,8 @@ Menu.BackgroundTransparency = 1.000
 Menu.BorderSizePixel = 0
 Menu.Position = UDim2.new(0.180938199, 0, 0.0639810413, 0)
 Menu.Size = UDim2.new(0, 864, 0, 685)
+Menu.Draggable = true
+Menu.Active = true
 
 Main.Name = "Main"
 Main.Parent = Menu
@@ -410,6 +412,7 @@ mouse.Image = "rbxassetid://3926305904"
 mouse.ImageColor3 = Color3.fromRGB(14, 149, 212)
 mouse.ImageRectOffset = Vector2.new(204, 964)
 mouse.ImageRectSize = Vector2.new(36, 36)
+
 
 function PopupGui()
 	if Menu.Visible == true then Menu.Visible = false
